@@ -14,6 +14,8 @@ SCOPES = ["https://www.googleapis.com/auth/calendar.readonly",
 
 
 class Gcalendar:
+    """Класс для взаимодействия с Google Calendar API."""
+
 
     def __init__(self, calendar_id=calendar_id):
         self.calendar_id = calendar_id
@@ -35,6 +37,7 @@ class Gcalendar:
         return creds
 
     def build(self):
+        """Создаёт экземпляр сервиса Google Calendar API."""
         creds = self.autorize()
         service = build("calendar", "v3", credentials=creds)
         return service

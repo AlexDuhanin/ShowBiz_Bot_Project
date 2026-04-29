@@ -23,20 +23,25 @@ ADMIN = 5181963292
 
 
 def time_to_dt(time: str):
+    """Преобразует строку в формате ISO в объект datetime."""
     tm = dt.datetime.fromisoformat(time)
     return tm
 
 
 def time_to_str(time: dt.datetime):
+    """Преобразует объект datetime в строку."""
     pass
 
 
 def human_time(time: dt.datetime):
+    """Форматирует объект datetime в удобочитаемую строку."""
     tm = dt.datetime.strftime(time, "%d.%m.%Y | %H:%M:%S")
     return tm
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Обрабатывает команду /start — показывает главное меню с выбором направления."""
+
     text = "Приветствие.\nВыберите направление:"
     keyboard = [[InlineKeyboardButton("Вокал", callback_data=str(VOICE))],
                 [InlineKeyboardButton("Гитара", callback_data=str(GUITAR))]]
@@ -45,6 +50,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def voice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Показывает доступные слоты для занятий вокалом из календаря."""
     user_data = context.user_data
     text = "Информация о занятиях вокала и пр."
     query = update.callback_query
@@ -68,6 +74,7 @@ async def voice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def guitar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Показывает доступные слоты для занятий гитарой из календаря."""
     user_data = context.user_data
     text = "Информация о занятиях гитары и пр."
     query = update.callback_query
@@ -92,6 +99,7 @@ async def guitar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Запрашивает у пользователя его имя после выбора слота."""
     user_data = context.user_data
     # message = update.effective_message.text
     text = "Введите свое имя:"
@@ -104,6 +112,7 @@ async def name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def contact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Сохраняет имя пользователя и запрашивает контактные данные."""
     user_data = context.user_data
     message = update.effective_message.text  # Принять имя
     user_data["name"] = message
@@ -113,6 +122,7 @@ async def contact(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def accept(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Сохраняет контактные данные и предлагает подтвердить бронь."""
     user_data = context.user_data
     message = update.effective_message.text  # Принять контакт
     user_data["contact"] = message
@@ -125,6 +135,7 @@ async def accept(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def succes(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Подтверждает бронь: обновляет событие в календаре и уведомляет админа о новой записи"""
     user_data = context.user_data
     # Принять ACCEPT
     text = "Запись успешно завершена"
