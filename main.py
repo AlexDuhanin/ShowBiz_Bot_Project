@@ -10,10 +10,15 @@ from telegram.ext import (
 )
 from gcalendar import Gcalendar
 import datetime as dt
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+TOKEN = os.getenv('TELEGRAM_TOKEN') # токен от бота
 
 calendar = Gcalendar()
 
-TOKEN = "8541968958:AAGR54MsOnNGOuliDw86Ukzbrwq7JHmCgoc"  # токен бота
+
 (VOICE, START_VOICE, FREE_SLOT,
  NAME, CONTACT, END,
  GUITAR,
