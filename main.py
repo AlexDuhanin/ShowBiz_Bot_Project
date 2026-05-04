@@ -13,7 +13,7 @@ import datetime as dt
 
 calendar = Gcalendar()
 
-TOKEN = "8541968958:AAEwHG8R16l2eu_6-MdiLdkdJ-IgGmwUzbE"  # токен бота
+TOKEN = "8541968958:AAGR54MsOnNGOuliDw86Ukzbrwq7JHmCgoc"  # токен бота
 (VOICE, START_VOICE, FREE_SLOT,
  NAME, CONTACT, END,
  GUITAR,
